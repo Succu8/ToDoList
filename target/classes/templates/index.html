@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks : All tasks</title>
+</head>
+<body>
+<div th:switch="${tasks}">
+    <div th:case="*">
+        <h2>ToDO</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Priority</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.title}"></td>
+                <td th:text="${task.date}"></td>
+                <td th:text="${task.priority}"></td>
+                <td th:text="${task.description}"></td>
+                <td th:text="${task.status}"></td>
+
+                <td><a th:href="@{/toDoList/edit/{id}(id=${task.getId()})}">Edit</a></td>
+                <td><form th:method="DELETE" th:action="@{/toDoList/delete/{id}(id=${task.getId()})}">
+                    <input type="submit" value="Delete"/>
+                </form></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

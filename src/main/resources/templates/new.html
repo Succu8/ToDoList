@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Tasks</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/toDoList}" th:object="${tasks}">
+    <label for="name">Enter a name: </label>
+    <input type="text" id="name" th:field="*{title}">
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</div>
+    <br/>
+    <label for="date">Enter a date: </label>
+    <input type="text" id="date" th:field="*{date}">
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Date Error</div>
+    <br/>
+    <label for="priority">Enter a priority: </label>
+    <input type="text" id="priority" th:field="*{priority}">
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}">Priority Error</div>
+    <br/>
+    <label for="description">Enter a description: </label>
+    <input type="text" id="description" th:field="*{description}">
+    <br/>
+    <label for="isDone">Enter a status: </label>
+    <input type="text" id="isDone" th:field="*{status}">
+    <br/>
+    <input type="submit" value="Create!">
+</form>
+</body>
+</html>
